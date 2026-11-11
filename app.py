@@ -69,11 +69,14 @@ st.markdown("""
 
 # Helper function to find assets
 def get_asset_path(rel_path):
+    filename = os.path.basename(rel_path)
     candidates = [
         rel_path,
         os.path.join("..", rel_path),
         os.path.join(os.path.dirname(__file__), rel_path),
-        os.path.join(os.path.dirname(__file__), "..", rel_path)
+        os.path.join(os.path.dirname(__file__), "..", rel_path),
+        filename,
+        os.path.join(os.path.dirname(__file__), filename)
     ]
     for c in candidates:
         if os.path.exists(c):
